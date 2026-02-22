@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+        <title>Tabla dinamica</title>
+        <style>
+            div
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            img 
+            {
+                display: none;
+                width: 120px; 
+                height: 120px;
+            }
+            
+            table 
+            {
+                background-color: aliceblue;
+                width: 440px; 
+                height: 440px;
+                border: 2px solid #137ce6; 
+            }
+
+            caption 
+            {
+                padding: 15px;
+                border: 2px solid #137ce6;
+            }
+
+            td 
+            {
+                padding: 10px;
+                border: 2px solid #0b78e6;
+            }
+
+            button 
+            {
+                padding: 10px 20px;
+                background-color: #137ce6;
+                color: white;
+                border: none;
+                font-weight: bold;
+                font-size: 16;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Tabla dinamica</h1>
+        <div>
+            <table>
+                <caption>
+                    <button onclick="RandomImagenes()">Crear tabla</button>
+                </caption>
+                <tr>
+                    <td><img src="img/1.jpg" class="foto"></td>
+                    <td><img src="img/2.jpg" class="foto"></td>
+                    <td><img src="img/3.jpg" class="foto"></td>
+                </tr>
+                <tr>
+                    <td><img src="img/4.jpg" class="foto"></td>
+                    <td><img src="img/5.jpg" class="foto"></td>
+                    <td><img src="img/6.jpg" class="foto"></td>
+                </tr>
+                <tr>
+                    <td><img src="img/7.jpg" class="foto"></td>
+                    <td><img src="img/8.jpg" class="foto"></td>
+                    <td><img src="img/9.jpg" class="foto"></td>
+                </tr>
+            </table>
+        </div>
+
+        <script>
+            function RandomImagenes() {
+                //Arreglo con las imagenes
+                let imagenes = [
+                    "img/1.jpg", "img/2.jpg", "img/3.jpg",
+                    "img/4.jpg", "img/5.jpg", "img/6.jpg",
+                    "img/7.jpg", "img/8.jpg", "img/9.jpg"
+                ];
+
+                //Randomizador
+                for (let i = imagenes.length - 1; i > 0; i--) 
+                {
+                    //Genera los numeros aleatorios
+                    let j = Math.floor(Math.random() * (i + 1));
+                    //Intercambio de valores en el arreglo
+                    let guardar = imagenes[i];
+                    imagenes[i] = imagenes[j];
+                    imagenes[j] = guardar;
+                }
+
+                //Obtenemos las imagenes de la tabla
+                let listaElementos = document.getElementsByClassName('foto');
+
+                //Insertamos los nuevos valores de random en la tabla
+                for (let k = 0; k < listaElementos.length; k++) 
+                {
+                    listaElementos[k].src = imagenes[k];
+                    listaElementos[k].style.display = "block";
+                }
+            }
+        </script>
+    </body>
+</html>
